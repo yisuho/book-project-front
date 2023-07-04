@@ -4,10 +4,17 @@ WORKDIR /app
 
 COPY . /app
 
+COPY package*.json /app/
+
+COPY package-lock.json /app/
+
+
 RUN npm install
 
-RUN npm run build
+RUN npx update-browserslist-db@latest
+
+RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 EXPOSE 3232
 
-CMD ["npm","start"]
+CMD ["npm","start"]`

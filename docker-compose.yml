@@ -1,0 +1,49 @@
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    container_name: web
+    restart: "on-failure"
+    ports:
+      - 80:80
+    volumes:
+      - /Users/yeek0620/Desktop/bookToy/nginx/nginx.config:/etc/nginx/nginx.conf
+      - /Users/yeek0620/Desktop/bookToy:/usr/share/nginx
+    networks:
+      - book-network
+    depends_on:
+      - client
+
+  express-server:
+    container_name: express-book
+    build:
+      context: ./back/
+      dockerfile: Dockerfile
+    volumes:
+      - "/Users/yeek0620/Desktop/bookToy/back:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - book-network
+
+  client:
+    container_name: client
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    volumes:
+      - "./front:/app"
+      - "/app/node_modules"
+    ports:
+      - "3232:3232"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - express-server
+    networks:
+      - book-network
+networks:
+  book-network:

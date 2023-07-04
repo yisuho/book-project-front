@@ -4,8 +4,13 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm install
+COPY package*.json /app/
+COPY package-lock.json /app/
 
+
+RUN npm install
+RUN npm uninstall bcrypt
+RUN npm install bcrypt
 RUN npm run build
 
 EXPOSE 3000

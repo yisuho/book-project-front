@@ -78,5 +78,5 @@
   "msw": {
     "workerDirectory": "public"
   },
-  "proxy": "http://localhost:3000/"
+  "proxy": "http://express-server:3000"
 }

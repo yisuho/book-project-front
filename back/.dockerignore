@@ -6,3 +6,4 @@ Dockerfile*
 *.md
 *.sh
 scripts
+node_modules
