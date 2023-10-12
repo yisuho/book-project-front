@@ -11,4 +11,4 @@ COPY package.json .
 RUN npm install --no-cache
 #RUN apk add --no-cache git
 
-CMD ["npm", "run", "server"]
+CMD ["npm", "start"]
