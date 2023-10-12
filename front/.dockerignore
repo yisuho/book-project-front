@@ -1,9 +1,0 @@
-.idea
-.git
-.gitignore
-.dockerignore
-Dockerfile*
-*.md
-*.sh
-scripts
-node_modules
