@@ -3,6 +3,7 @@ import { instance } from "./axiosInstance";
 const getComments = async (id: string | undefined) => {
   try {
     const commentsData = await instance.get(`/api/comments/${id}`);
+
     return commentsData;
   } catch (err) {
     console.log(err);
