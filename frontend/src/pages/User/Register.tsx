@@ -132,7 +132,7 @@ const Register = ({ isEdit }: RegisterProps) => {
                 disabled={sessionStorage.getItem("role") ? true : false}
                 {...register("passwordConfirm", {
                   required: "비밀번호를 다시 입력해주세요",
-                  validate: (value) => {
+                  validate: (value: any) => {
                     const { password } = getValues();
                     return password === value || "비밀번호가 일치하지 않습니다";
                   },

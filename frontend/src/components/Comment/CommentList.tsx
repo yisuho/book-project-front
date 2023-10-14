@@ -52,9 +52,10 @@ function CommentList({ postId }: { postId: string | undefined }) {
         />
         <button onClick={() => commentCreateMutation.mutate()}>등록</button>
       </div>
-      {data?.data.map((item: CommentData) => {
-        return <Comment key={item.id} {...item} />;
-      })}
+      {data &&
+        data.data.map((item: CommentData) => {
+          return <Comment key={item.id} {...item} />;
+        })}
     </CommentWrap>
   );
 }
