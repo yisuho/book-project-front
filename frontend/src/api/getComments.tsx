@@ -1,8 +1,8 @@
 import { instance } from "./axiosInstance";
-
+import { url } from "../url";
 const getComments = async (id: string | undefined) => {
   try {
-    const commentsData = await instance.get(`/api/comments/${id}`);
+    const commentsData = await instance.get(`${url}/api/comments/${id}`);
 
     return commentsData;
   } catch (err) {

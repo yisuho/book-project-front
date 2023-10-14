@@ -8,6 +8,7 @@ import {
 import ImageSearchResult from "./ImageSearchResult";
 import MyButton from "../MyButton";
 import axios from "axios";
+import { url } from "../../url";
 
 type ImageSearchModalProps = {
   setBookImageUrl: Dispatch<SetStateAction<string>>;
@@ -31,7 +32,9 @@ const ImageSearchModal = (props: ImageSearchModalProps) => {
         console.log("검색어 없음");
         return;
       }
-      const { data } = await axios.get(`/api/image?query=${bookSearchKeyword}`);
+      const { data } = await axios.get(
+        `${url}/api/image?query=${bookSearchKeyword}`,
+      );
       setbookSearchResult([...data]);
     } catch (err) {
       console.log(err);

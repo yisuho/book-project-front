@@ -16,6 +16,7 @@ import {
 import { reasons } from "../../ContentReportModal/ContentReportModalReasonForm";
 // import { RefreshDispatchContext } from "../../../pages/Admin/Admin";
 import { useMutation, useQueryClient } from "react-query";
+import { url } from "../../../url";
 
 interface ModalContentType {
   selectedPostId: string | null;
@@ -29,7 +30,7 @@ export interface ReportListType {
 }
 
 const deletePost = (selectedPostId: string | null) => {
-  axios.delete(`/api/reports/${selectedPostId}`);
+  axios.delete(`${url}/api/reports/${selectedPostId}`);
   location.reload();
 };
 
@@ -54,7 +55,7 @@ const ModalContent = ({ selectedPostId, setModalState }: ModalContentType) => {
   );
 
   useEffect(() => {
-    axios.get(`/api/reports/${selectedPostId}`).then((res) => {
+    axios.get(`${url}/api/reports/${selectedPostId}`).then((res) => {
       setReportList(res.data);
     });
   }, [selectedPostId]);

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { url } from "../url";
 const userToken = sessionStorage.getItem("userToken");
 
 interface Data {
@@ -10,7 +10,7 @@ interface Data {
 
 const getUsersInfo = async () => {
   try {
-    const user = await axios.get(`/api/users/myInfo`, {
+    const user = await axios.get(`${url}/api/users/myInfo`, {
       headers: {
         authorization: `Bearer ${userToken}`,
       },
@@ -23,7 +23,7 @@ const getUsersInfo = async () => {
 
 const createUserInfo = async (data: Data) => {
   try {
-    await axios.post("/api/guest/register", {
+    await axios.post(`${url}/api/guest/register`, {
       email: data.email,
       password: data.password,
       nickname: data.nickname,
@@ -42,7 +42,7 @@ const createUserInfo = async (data: Data) => {
 const updateUserInfo = async (data: Data) => {
   try {
     await axios.patch(
-      `/api/users/update`,
+      `${url}/api/users/update`,
       {
         nickname: data.nickname,
         currentPassword: data.password,
@@ -61,7 +61,7 @@ const updateUserInfo = async (data: Data) => {
 };
 
 const deleteUserInfo = async () => {
-  await axios.delete("/api/users/delete", {
+  await axios.delete(`${url}/api/users/delete`, {
     headers: {
       authorization: `Bearer ${userToken}`,
     },
@@ -72,7 +72,7 @@ const deleteUserInfo = async () => {
 
 const userLogin = async (data: Data) => {
   try {
-    const res = await axios.post("/api/guest/login", data);
+    const res = await axios.post(`${url}/api/guest/login`, data);
     sessionStorage.setItem("userToken", res.data);
     alert("로그인이 완료되었습니다.");
     window.location.replace("/");
@@ -87,7 +87,7 @@ const userLogin = async (data: Data) => {
 
 const kakaoLogin = async (code: any) => {
   try {
-    const res = await axios.get(`/api/auth/kakao/login?code=${code}`);
+    const res = await axios.get(`${url}/api/auth/kakao/login?code=${code}`);
     sessionStorage.setItem("userToken", res.data.accessToken);
     sessionStorage.setItem("role", res.data.role);
     window.location.replace("/");
@@ -99,7 +99,7 @@ const kakaoLogin = async (code: any) => {
 const kakaoUpdate = async (data: Data) => {
   try {
     await axios.patch(
-      `/api/users/kakao/update`,
+      `${url}/api/users/kakao/update`,
       {
         nickname: data.nickname,
       },

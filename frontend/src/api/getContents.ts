@@ -1,4 +1,5 @@
 import axios from "axios";
+import { url } from "../url";
 
 const getData = async (
   all: boolean,
@@ -18,9 +19,9 @@ const getData = async (
             authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         };
-    const url = `/api/posts${allContents}/order/${sort}?page=${page}`;
+    const backendUrl = `${url}/api/posts${allContents}/order/${sort}?page=${page}`;
 
-    const response = await axios.get(url, headObj).then((res) => {
+    const response = await axios.get(backendUrl, headObj).then((res) => {
       if (res.data.post.length === 0) {
         return {
           response: [],

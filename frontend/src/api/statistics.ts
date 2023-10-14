@@ -1,9 +1,9 @@
 import axios from "axios";
-
+import { url } from "../url";
 const getBookStatistics = async () => {
   const userToken = sessionStorage.getItem("userToken");
   try {
-    const res = await axios.get(`/api/users/month/count`, {
+    const res = await axios.get(`${url}/api/users/month/count`, {
       headers: {
         authorization: `Bearer ${userToken}`,
       },

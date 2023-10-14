@@ -2,6 +2,7 @@ import axios from "axios";
 import { UserListItem } from "../UserListItem/UserListItem";
 import { UserListContainer } from "./UserList.styles";
 import { useQuery } from "react-query";
+import { url } from "../../url";
 
 export interface UserType {
   id: string;
@@ -18,7 +19,7 @@ type User = {
 };
 
 const fetchUserList = async () => {
-  const data = await axios.get("/api/users").then((res) => {
+  const data = await axios.get(`${url}/api/users`).then((res) => {
     return res.data;
   });
   return data;

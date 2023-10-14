@@ -19,6 +19,7 @@ import { useMutation, useQueryClient, useQuery } from "react-query";
 import Modal from "../../components/Modal/Modal";
 import { dateFormatter } from "../../api/dateFormatter";
 import axios from "axios";
+import { url } from "../../url";
 
 function Content() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function Content() {
 
   const getOnePost = async () => {
     try {
-      const res = await axios.get(`/api/posts/${id}`, {
+      const res = await axios.get(`${url}/api/posts/${id}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
@@ -67,7 +68,7 @@ function Content() {
 
   const handleDelete = async () => {
     await instance
-      .delete(`/api/posts/delete/${id}`)
+      .delete(`${url}/api/posts/delete/${id}`)
       .then(() => {
         alert("독서 기록이 삭제되었습니다.");
         navigate("/");

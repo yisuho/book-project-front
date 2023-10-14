@@ -1,12 +1,13 @@
 import axios from "axios";
+import { url } from "../url";
 
 const getSearch = async (
   page: number,
   keyword: string,
 ): Promise<{ response: []; totalCount: number }> => {
   try {
-    const url = `/api/posts/search/post?search=${keyword}&page=${page}`;
-    const response = await axios.get(url).then((res) => {
+    const backendUrl = `${url}/api/posts/search/post?search=${keyword}&page=${page}`;
+    const response = await axios.get(backendUrl).then((res) => {
       if (res.data.post.length === 0) {
         return {
           response: [],

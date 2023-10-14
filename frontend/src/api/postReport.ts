@@ -1,6 +1,8 @@
 import { instance } from "./axiosInstance";
 import axios from "axios";
 import { Buffer } from "buffer";
+import { url } from "../url";
+
 interface ReportDataType {
   id: string;
   postId: number;
@@ -17,7 +19,7 @@ export const isReported = async (postId: string | undefined) => {
     const { userId } = JSON.parse(payload.toString());
 
     const reportData: ReportDataType = await axios
-      .get(`/api/reports/${postId}`)
+      .get(`${url}/api/reports/${postId}`)
       .then((res) => {
         const reportData = res.data.filter(
           (x: ReportDataType) => x.userId === parseInt(userId),

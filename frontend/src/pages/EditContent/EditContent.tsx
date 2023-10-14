@@ -11,6 +11,7 @@ import {
   ImgSearchInput,
 } from "./EditContent.styles";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { url } from "../../url";
 
 function EditContent() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function EditContent() {
 
   const getOnePost = async () => {
     try {
-      const res = await axios.get(`/api/posts/${id}`, config);
+      const res = await axios.get(`${url}/api/posts/${id}`, config);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -64,7 +65,7 @@ function EditContent() {
   const handleSubmit = async () => {
     await axios
       .patch(
-        `/api/posts/update/${id}`,
+        `${url}/api/posts/update/${id}`,
         {
           title: post.title,
           content: post.content,
